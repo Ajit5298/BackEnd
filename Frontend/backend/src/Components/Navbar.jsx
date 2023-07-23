@@ -4,10 +4,29 @@ import { Routes, Route } from 'react-router-dom'
 import img1 from "../Components/image/logo-png.png";
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../context/User.context';
 
 export const Navbar = () => {
     const [showLoginForm, setShowLoginForm] = useState(false);
     const Router = useNavigate();
+    const [user, setUser] = useState({});
+    const [role, setRole] = useState("");
+    const { state, logout } = useContext(AuthContext);
+    const router = useNavigate();
+
+    console.log(role, "_ role")
+
+    useEffect(() => {
+        if (state.user) {
+            setUser(state?.user);
+            setRole(state?.user?.role)
+        } else {
+            setUser({});
+            setRole("");
+        }
+    }, [state])
 
     const handleAccountClick = () => {
         setShowLoginForm(!showLoginForm);
@@ -67,55 +86,68 @@ export const Navbar = () => {
                     </div>
                     {showMenu && (
                         <div id="dropdown-menu">
-                                <div onClick={handleRegister} id="menu-item">Register</div>
-                                <div onClick={handleLogin} id="menu-item">Login</div>
+                            <div onClick={handleRegister} id="menu-item">Register</div>
+                            <div onClick={handleLogin} id="menu-item">Login</div>
                             <div onClick={handleHome} id="menu-item"> Home</div>
                             <div onClick={handlemen} id="menu-item"> MEN</div>
                             <div onClick={handlewomen} id="menu-item"> WOMEN</div>
                             <div onClick={handlekids} id="menu-item">Kids</div>
                             <div onClick={handlenew} id="menu-item">Newly LAUNCHED</div>
                             <div onClick={handleLogout} id="menu-item">Logout</div>
-                          
-                        
-                            
+
+
+
                         </div>
                     )}
                 </div>
-                <div id="sale" onClick={handleHomes}>
+                {/* <div id="sale" onClick={handleHomes}>
                     Home
-                </div>
+                </div> */}
+
+                {/* <div id="newL" onClick={handlenew}>
+                    NEWLY LAUNCHED
+                </div> */}
+
+
+                <div id="sale" onClick={handleHomes}>HOME </div>
                 <div id="men" onClick={handlemen}>
-                    MEN
+                    Men
                 </div>
                 <div id="women" onClick={handlewomen}>
-                    WOMEN
+                    Women
                 </div>
                 <div id="kids" onClick={handlekids}>
-                    KIDS
+                    Kids
                 </div>
-                <div id="newL" onClick={handlenew}>
-                    NEWLY LAUNCHED
-                </div>
+                {role == "Admin" &&
+                    <div id="sale">User Handler</div>}
+                {(role == "Admin" || role == "Seller") &&
+                    <div id="sale" onClick={() => router('/productshandler')} >Product Handler</div>}
+                <div onClick={() => router('/all-products')} >All product</div>
+
+                {(role == "Seller" || role == "Admin") &&
+                    <div id="sale" onClick={() => router("/add-product")}>Add Product</div>}
+                {role == "Buyer" &&
+                    <div id="sale" >Cart</div>}
+                {user?.name ?
+                    <>
+                        <div id="sale" onClick={logout}>Logout</div>
+                        <div id="Name" onClick={() => router('/profile')}>{user.name}</div>
+
+                    </> :
+                    <div id="sale" onClick={() => router('/login')}>Login</div>
+
+                }
+
                 <div id="loginicon">
-                    <svg onClick={handleAccountClick} xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
+                    <svg onClick={handleRegister} xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="#000000" viewBox="0 0 256 256">
                         <path
                             d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z">
                         </path>
                     </svg>
                     {/* <span>{username}</span> */}
 
-                    {showLoginForm && (
-                        <div class="LoginForm">
-
-
-                            <div>
-                                <button onClick={handleLogin} id="T10">Login</button>
-                                <button onClick={handleRegister} id="T10">Register</button>
-                                <button id="T10" onClick={handleLogout}>Logout</button>
-                            </div>
-
-                        </div>
-                    )}
+                
 
                 </div>
 

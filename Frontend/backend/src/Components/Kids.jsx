@@ -3,17 +3,16 @@ import { Navbar } from './Navbar';
 import Sidebar from './Sidebar';
 import { Footer } from './Footer';
 
-export const Men = () => {
+export const Kids = () => {
   return (
     <>
-      <Navbar />
+     <Navbar />
       <div id="mainmen">
         <div id="menside">
           <Sidebar />
         </div>
       </div>
       <Footer />
-
     </>
   )
 }

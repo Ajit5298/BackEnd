@@ -9,6 +9,10 @@ const userSchema = new Schema({
         type: String,
         requiired: true
     },
+    role: {
+        type: String,
+        requiired: true
+    },
     password: {
         type: String,
         requiired: true

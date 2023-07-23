@@ -1,17 +1,25 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, mongo } from "mongoose";
 
 const productSchema = new Schema({
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
     name: {
         type: String,
-        requiired: true
+        required: true
     },
     price: {
         type: Number,
-        requiired: true
+        required: true
     },
     image: {
         type: String,
-        requiired: true
+        required: true
+    },
+    artnumber: {
+        type: String,
+        required: true
     },
 })
 

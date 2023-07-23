@@ -2033,7 +2033,54 @@
     margin-top: 20px;
     color: #666;
   }
+  #select
+  {
+    display: block;
+    height: 50px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.07);
+    border-radius: 3px;
+    padding: 0 10px;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  #selectoption
+  {
+    height: 30px;
+    padding: 20px;
+    color: #080710;
+   
+  }
+  ::placeholder {
+    color: #e5e5e5;
+  }
   
-  
-  
-  
+  #Name
+  {
+    font-weight:800;
+    border: 1px solid red;
+    width: 80px;
+    height: 28px;
+    overflow: hidden;
+  }
+  #sibdivs6
+  {
+    background-color: #080710;
+    height: 30px;
+    border:1px solid rgba(186, 180, 180, 0.13);
+    box-shadow:0 0 40px rgba(255,255,255,0.1);
+    height: 4vh;
+    width: 100%;
+     display: flex;
+   align-items: center;
+   justify-content: center;
+   cursor: pointer;
+  }
+  #color
+  {
+    padding: 10px;
+    border: 1px dashed rgb(225, 215, 215);
+
+  }

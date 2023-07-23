@@ -1,7 +1,7 @@
 /* Default styles */
 
 #bgc {
-    height: 800px;
+    height: 900px;
     background-color: #080710;
   }
   
@@ -34,7 +34,7 @@
   }
   
   #loginform {
-    height: 650px;
+    height: auto;
     width: 450px;
     background-color: rgba(255, 255, 255, 0.13);
     position: absolute;
